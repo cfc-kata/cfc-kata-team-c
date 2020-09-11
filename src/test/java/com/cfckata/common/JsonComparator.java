@@ -30,7 +30,11 @@ public class JsonComparator {
 
     private static synchronized ObjectMapper getMapper() {
         if (mapper == null) {
-            createObjectMapper();
+            synchronized (JsonComparator.class){
+                if(mapper == null){
+                    createObjectMapper();
+                }
+            }
         }
 
         return mapper;
