@@ -11,7 +11,9 @@ public class LoanService {
 
     @Transactional
 	public LoanDomain createOrder(LoanRequest request) {
-        return new LoanDomain();
+    	LoanDomain domain = new LoanDomain();
+    	domain.setLoanId("aa");
+        return domain;
 	}
 	
 
