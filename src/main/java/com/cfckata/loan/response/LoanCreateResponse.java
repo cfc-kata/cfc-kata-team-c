@@ -1,7 +1,7 @@
 package com.cfckata.loan.response;
 
 
-import com.cfckata.loan.domain.LoanOrder;
+import com.cfckata.loan.domain.LoanDomain;
 
 public class LoanCreateResponse {
     private String loanId;
@@ -9,8 +9,8 @@ public class LoanCreateResponse {
     public LoanCreateResponse() {
     }
 
-    public LoanCreateResponse(LoanOrder loanOrder) {
-    	loanId = loanOrder.getLoanId();
+    public LoanCreateResponse(LoanDomain LoanDomain) {
+    	loanId = LoanDomain.getLoanId();
     }
 
 	public String getLoanId() {
