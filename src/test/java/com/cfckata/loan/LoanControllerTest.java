@@ -1,4 +1,4 @@
-package com.cfckata.common.loan;
+package com.cfckata.loan;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
