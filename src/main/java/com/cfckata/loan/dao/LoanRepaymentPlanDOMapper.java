@@ -21,4 +21,6 @@ public interface LoanRepaymentPlanDOMapper {
     int delete(LoanRepaymentPlanDO record);
     
     List<LoanRepaymentPlanDO> selectByLoanNo(String loanNo);
+
+    int insertBatch(List<LoanRepaymentPlanDO> list);
 }

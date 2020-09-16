@@ -1,5 +1,6 @@
 package com.cfckata.loan;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -26,7 +27,7 @@ public class LoanRepository {
 		this.loanRepaymentPlanDOMapper = loanRepaymentPlanDOMapper;
 	}
 
-	public Aggregate<LoanDomain> selectByLoanId(String loanId) {
+	public Aggregate<LoanDomain> findByLoanId(String loanId) {
 		LoanInfoDO loanDO = loanInfoDOMapper.selectByPrimaryKey(loanId);
         if (loanDO == null) {
             throw new EntityNotFoundException("Order(" + loanId + ") not found");
@@ -49,5 +50,28 @@ public class LoanRepository {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * 插入借据及还款计划
+     * @param aggregate
+     */
+	public void save(Aggregate<LoanDomain> aggregate) {
+		LoanInfoDO loanDO = loanInfoDOMapper.selectByPrimaryKey(aggregate.getRoot().getLoanId());
+		if(loanDO!=null) {
+			return;
+		}
+		loanInfoDOMapper.insert(new LoanInfoDO(aggregate.getRoot()));
+		
+		loanRepaymentPlanDOMapper.insertBatch(getPlanList(aggregate.getRoot().getList()));
+	}
 
+	public List<LoanRepaymentPlanDO> getPlanList(List<LoanRepaymentPlanDomain> domainList){
+		List<LoanRepaymentPlanDO> list = new ArrayList();
+		if(domainList==null||domainList.size()==0) {
+			return list;
+		}
+		for(LoanRepaymentPlanDomain planDomain: domainList) {
+			list.add(new LoanRepaymentPlanDO(planDomain));
+		}
+		return list;
+	}
 }

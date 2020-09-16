@@ -26,5 +26,13 @@ public class LoanDomain implements Versionable {
 		return 0;
 	}
 
+	/**
+	 * 生成借据及还款计划
+	 */
+	public void createLoan() {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 }

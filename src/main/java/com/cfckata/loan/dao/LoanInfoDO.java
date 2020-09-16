@@ -1,10 +1,8 @@
 package com.cfckata.loan.dao;
 
 import java.math.BigDecimal;
-import java.util.List;
 
 import com.cfckata.loan.domain.LoanDomain;
-import com.cfckata.loan.response.LoanRepaymentPlan;
 
 import lombok.Data;
 
@@ -35,6 +33,17 @@ public class LoanInfoDO {
 		loan.setTotalMonth(getTotalMonth());
 		loan.setWithdrawBankAccount(getWithdrawBankAccount());
 		return null;
+	}
+	
+	public LoanInfoDO(LoanDomain domain) {
+		this.applyAmount = domain.getApplyAmount();
+		this.contractId = domain.getContractId();
+		this.interestRate = domain.getInterestRate();
+		this.loanId = domain.getLoanId();
+		this.repaymentBankAccount = domain.getRepaymentBankAccount();
+		this.repaymentType = domain.getRepaymentType();
+		this.totalMonth = domain.getTotalMonth();
+		this.withdrawBankAccount = domain.getWithdrawBankAccount();
 	}
 
 }

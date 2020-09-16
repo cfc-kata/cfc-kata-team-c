@@ -9,6 +9,7 @@ import lombok.Data;
 @Data
 public class LoanRepaymentPlanDomain implements Versionable {
 
+	private String id;
     private String loanId;
     private String contractId;
     private BigDecimal applyAmount;

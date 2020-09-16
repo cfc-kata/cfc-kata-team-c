@@ -27,8 +27,7 @@ public class LoanController {
 	@PostMapping
     @ResponseStatus(HttpStatus.OK)
     public LoanCreateResponse loanCreate(@RequestBody LoanRequest request) {
-    	
-		LoanDomain salesOrder = loanService.createOrder(request);
+		LoanDomain salesOrder = loanService.createLoan(request);
         return new LoanCreateResponse(salesOrder);
     }
     
