@@ -24,15 +24,13 @@ import com.cfckata.contract.service.ContractService;
 @RestController
 @RequestMapping("/contract")
 public class ContractController {
-    @Autowired
-    Contract contract;
     
     @Autowired
     private ContractService contractService;
 
     @RequestMapping(value = "/create",method = RequestMethod.POST)
     public ContractResp createContract(@RequestBody ContractReq contractReq){
-        String contractId = contract.create(contractReq);
+        String contractId = contractService.create(contractReq);
         return  new ContractResp(contractId);
     }
     

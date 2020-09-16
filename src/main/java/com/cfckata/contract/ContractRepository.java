@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.cfckata.contract.dao.ContractDOMapper;
 import com.cfckata.contract.dao.ContractDo;
+import com.cfckata.contract.domain.Contract;
 import com.cfckata.contract.domain.ContractInfo;
 import com.cfckata.contract.domain.Customer;
 import com.cfckata.contract.enums.RepaymentTypeEnum;
@@ -47,5 +48,9 @@ public class ContractRepository {
 	        contractDo.setCommitment(new BigDecimal("9000.00"));
 	        return contractDo;
 	    }
+
+	public void save(Aggregate<ContractInfo> aggregate) {
+		
+	}
 
 }

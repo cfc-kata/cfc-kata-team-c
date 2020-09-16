@@ -18,6 +18,7 @@ public class ContractReq implements Serializable {
     private String repaymentType;
     private String maturityDate;
     private BigDecimal commitment;
+    private String contractId;
     
     public ContractReq() {
     	
@@ -61,6 +62,14 @@ public class ContractReq implements Serializable {
 
 	public void setCommitment(BigDecimal commitment) {
 		this.commitment = commitment;
+	}
+
+	public String getContractId() {
+		return contractId;
+	}
+
+	public void setContractId(String contractId) {
+		this.contractId = contractId;
 	}
     
     

@@ -31,7 +31,6 @@ public class ContractControllerTest extends ApiTest {
         assertNotNull(resp);
         assertNotNull(resp.getBody());
         assertNotNull(resp.getBody().getContractId());
-        System.out.println("contractId=========="+resp.getBody().getContractId());
     }
 
     private ContractReq getContractCreateReq(){
@@ -41,6 +40,7 @@ public class ContractControllerTest extends ApiTest {
         customer.setIdNumber("410782199001011234");
         customer.setMobilePhone("18911112222");
         customer.setName("zhangsan");
+        contractReq.setContractId("333");
         contractReq.setCustomerInfo(customer);
         contractReq.setInterestRate(new BigDecimal("9.9"));
         contractReq.setRepaymentType(RepaymentTypeEnum.DEBX.name());
