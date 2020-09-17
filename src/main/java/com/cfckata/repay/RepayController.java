@@ -1,8 +1,5 @@
 package com.cfckata.repay;
 
-import java.math.BigDecimal;
-import java.util.Date;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -35,15 +32,15 @@ public class RepayController {
 	@ResponseStatus(HttpStatus.CREATED)
     public RepaymentResponse createRepaymentOrder(@RequestBody RepaymentRequest request){
 		
-		RepaymentResponse respon = new RepaymentResponse();
-		respon.setRepaymentId("0987");
-		respon.setCreateTime(new Date());
-		respon.setRepaymentPlanId(request.getRepaymentPlanId());
-		respon.setRepaymentBankAccount("还款卡号：98765");
-		respon.setAmount(new BigDecimal("666"));
-		//TODO 查询还款计划明细信息，获取还款金额
+//		RepaymentResponse respon = new RepaymentResponse();
+//		respon.setRepaymentId("0987");
+//		respon.setCreateTime(new Date());
+//		respon.setRepaymentPlanId(request.getRepaymentPlanId());
+//		respon.setRepaymentBankAccount("还款卡号：98765");
+//		respon.setAmount(new BigDecimal("666"));
+		RepaymentOrder repaymentOrder = repayService.createRepaymentOrder(request);
 		
-        return respon;
+        return new RepaymentResponse(repaymentOrder);
     }
 	
 	

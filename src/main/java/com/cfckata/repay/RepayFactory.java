@@ -27,7 +27,7 @@ public class RepayFactory {
 	public RepaymentOrder createReapyOrder(LoanRepaymentPlanDomain planDomain, String repaymentBankAccount) {
 		BigDecimal repayAmount = planDomain.getPayableAmount();
 		
-		if(BigDecimal.ZERO.compareTo(repayAmount)<=0) {
+		if(BigDecimal.ZERO.compareTo(repayAmount)>=0) {
 			throw new BusinessException("001", "余额为0，不需要进行还款");
 		}
 		RepaymentOrder order  = new RepaymentOrder();
@@ -42,7 +42,7 @@ public class RepayFactory {
 	
 	
 	private String getRepaymentId(String planId) {
-		return "RP"+DateUtils.getCurDT()+DateUtils.getCurTM()+ String.format("%010d", DateUtils.getCurTM()); 
+		return "RP"+DateUtils.getCurDT()+DateUtils.getCurTM()+ String.format("%010d", Integer.valueOf(DateUtils.getCurTM())); 
 	}
 	
 }

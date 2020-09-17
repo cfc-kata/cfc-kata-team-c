@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 import com.cfckata.loan.LoanRepaymentPlanService;
 import com.cfckata.loan.LoanRepository;
 import com.cfckata.loan.domain.LoanRepaymentPlanDomain;
-import com.cfckata.loan.response.LoanRepaymentPlan;
 import com.cfckata.repay.domain.RepaymentOrder;
 import com.cfckata.repay.request.RepaymentRequest;
 
