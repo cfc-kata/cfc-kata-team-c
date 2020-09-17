@@ -29,12 +29,12 @@ public class LoanRepository {
 
 	public Aggregate<LoanDomain> findByLoanId(String loanId) {
 		// TODO 持久层实现待添加
-//		LoanInfoDO loanDO = loanInfoDOMapper.selectByPrimaryKey(loanId);
 		LoanInfoDO loanDO = new LoanInfoDO();
 		loanDO.setLoanId("JJ000001");
-        if (loanDO == null) {
-            throw new EntityNotFoundException("Order(" + loanId + ") not found");
-        }
+//		LoanInfoDO loanDO = loanInfoDOMapper.selectByPrimaryKey(loanId);
+//        if (loanDO == null) {
+//            throw new EntityNotFoundException("Order(" + loanId + ") not found");
+//        }
 
         LoanDomain loanDomain = loanDO.toDomain();
         List<LoanRepaymentPlanDomain> planList = new ArrayList();
