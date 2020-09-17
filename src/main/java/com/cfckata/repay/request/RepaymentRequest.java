@@ -12,4 +12,8 @@ public class RepaymentRequest implements Serializable{
 	 */
 	private static final long serialVersionUID = 1198394593090739958L;
 	private String repaymentPlanId;
+	/**
+	 * 还款卡号
+	 */
+	private String repaymentBankAccount;
 }

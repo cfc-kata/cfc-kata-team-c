@@ -54,6 +54,11 @@ public class LoanRepository {
                 })
                 .collect(Collectors.toList());
     }
+    
+    public LoanRepaymentPlanDomain getLoanRepaymentPlanDomainById(String planId) {
+    	LoanRepaymentPlanDO planDO = loanRepaymentPlanDOMapper.selectByPrimaryKey(planId);
+    	return planDO.toDomain();
+    }
 
     /**
      * 插入借据及还款计划
