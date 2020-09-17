@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+
+<mapper namespace="com.zycfc.alc.core.orm.account.mapper.RepaymentOrderMapper">
+
+	<resultMap id="Result" type="com.zycfc.alc.core.orm.account.domain.RepaymentOrder">
+				<id property="repaymentId" column="repayment_id" />
+				<result property="loanId" column="loan_id" />
+				<result property="createTime" column="create_time" />
+				<result property="repaymentPlanId" column="repayment_plan_id" />
+				<result property="amount" column="amount" />
+				<result property="repaymentBankAccount" column="repayment_bank_account" />
+				<result property="repaySts" column="repay_sts" />
+	</resultMap>
+	
+	
+	<sql id="table">
+		repayment_order
+	</sql>
+	
+	<sql id="demoSet">
+	  <set>
+	    loan_id=#{loanId}, 
+	    create_time=#{createTime}, 
+	    repayment_plan_id=#{repaymentPlanId}, 
+	    amount=#{amount}, 
+	    repayment_bank_account=#{repaymentBankAccount}, 
+	    repay_sts=#{repaySts}
+	  </set>
+	</sql>
+	
+	<sql id="columns">
+		repayment_id,loan_id,create_time,repayment_plan_id,amount,repayment_bank_account,repay_sts
+	</sql>
+
+   <!-- 单条插入记录  -->
+	<insert id="add" parameterType="com.zycfc.alc.core.orm.account.domain.RepaymentOrder">
+	   <!--
+	     <selectKey keyProperty="id" resultType="long">
+            select LAST_INSERT_ID()
+        </selectKey>  -->
+		INSERT INTO <include refid="table" />
+		(<include refid="columns"/>)
+		VALUES
+		(#{repaymentId}, #{loanId}, #{createTime}, #{repaymentPlanId}, #{amount}, #{repaymentBankAccount}, #{repaySts})
+	</insert>
+	
+	<!-- 批量插入  -->
+	<insert id="addBatch" parameterType="java.util.List">
+        INSERT INTO    <include refid="table" />
+		   ( <include refid="columns" />)
+		VALUES
+        <foreach collection="list"  item="item" separator="," index="index">
+           (#{item.repaymentId}, #{item.loanId}, #{item.createTime}, #{item.repaymentPlanId}, #{item.amount}, #{item.repaymentBankAccount}, #{item.repaySts})
+        </foreach>
+    </insert>
+	
+	<!-- 根据主键ID进行物理删除  -->
+	<delete id="deleteById" parameterType="String">
+		DELETE FROM  <include refid="table" />
+		WHERE repayment_id=#{repayment_id}
+	</delete>
+	
+	<!-- 根据主键ID进行逻辑删除  -->
+	<delete id="delLogicById" parameterType="String">
+		UPDATE   <include refid="table" />
+		SET DEL_FLAG='1'
+		WHERE repayment_id=#{repayment_id}
+	</delete>
+	
+	<!-- 批量物理删除  -->
+	<delete id="deleteBatchIds"  parameterType = "java.util.List">
+       DELETE FROM <include refid="table" />
+       WHERE id IN
+       <foreach collection="list"  item="item" open="(" separator="," close=")"  >
+       #{item}
+       </foreach>
+   </delete>
+
+	<!-- 根据ID修改  -->
+	<update id="updateById" parameterType="com.zycfc.alc.core.orm.account.domain.RepaymentOrder">
+		UPDATE  <include refid="table" />
+		<set>
+		    update_time=#{ updateTime} 
+			<if test="@Ognl.Ognl@isNotEmpty(updateUser)"> update_user=#{ updateUser}, </if>
+			 
+		</set>
+		WHERE repayment_id=#{repayment_id}
+	</update>
+		
+    <!-- 根据ID查询单笔记录  -->
+	<select id="findOneById" parameterType="String" resultMap="Result">
+		SELECT <include refid="columns"/>
+		FROM  <include refid="table" />
+		WHERE repayment_id=#{repayment_id}
+	</select>
+	
+	<!-- 根据ID列表 查询相关记录  -->
+	<select id="findAll" parameterType="String" resultMap="Result">
+		SELECT <include refid="columns"/>
+		FROM  <include refid="table" />
+		<if test="@Ognl.Ognl@isNotEmpty(list)">
+		WHERE repayment_id IN
+		<foreach item="item" index="index" collection="list" open="(" separator="," close=")">  
+				#{item}
+		</foreach>
+		</if>
+	</select>
+	
+	<select id="find" parameterType="com.zycfc.alc.core.orm.account.domain.RepaymentOrder" resultMap="Result">
+		SELECT <include refid="columns"/>
+		FROM  <include refid="table" />
+		WHERE DEL_FLAG='0'
+	</select>
+</mapper>
