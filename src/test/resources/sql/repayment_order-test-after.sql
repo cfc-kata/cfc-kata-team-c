@@ -1,0 +1,1 @@
+delete from repayment_order where repayment_id = 'RP001';
