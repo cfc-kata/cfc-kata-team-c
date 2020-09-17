@@ -9,15 +9,17 @@ import lombok.Data;
 @Data
 public class LoanRepaymentPlanDomain implements Versionable {
 
-	private String id;
+	private String planId;
     private String loanId;
-    private String contractId;
-    private BigDecimal applyAmount;
-    private Integer totalMonth;
-    private BigDecimal interestRate;
-    private String withdrawBankAccount;
-    private String repaymentBankAccount;
-    private String repaymentType;
+    private Integer periodNo; //期号
+    private String payableDate; //还款日期
+    private BigDecimal payableAmount; //应还总额
+    private BigDecimal payableInterest; //应还利息
+    private BigDecimal payableCapital; //应还本金
+    private BigDecimal remainCapital; //剩余本金
+    private String status; //状态
+    private String version;
+    
 
 	@Override
 	public int getVersion() {

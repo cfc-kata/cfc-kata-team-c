@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.cfckata.loan.util.PlanCreateUtil;
+import com.cfckata.util.UuidUtil;
 import com.github.meixuesong.aggregatepersistence.Versionable;
 
 import lombok.Data;
@@ -19,6 +21,7 @@ public class LoanDomain implements Versionable {
     private String withdrawBankAccount;
     private String repaymentBankAccount;
     private String repaymentType;
+    private String version;
     private List<LoanRepaymentPlanDomain> list;
 
 	@Override
@@ -30,8 +33,8 @@ public class LoanDomain implements Versionable {
 	 * 生成借据及还款计划
 	 */
 	public void createLoan() {
-		// TODO Auto-generated method stub
-		
+		loanId = UuidUtil.getUuid();
+		list = PlanCreateUtil.createPlan(this);
 	}
 
 

@@ -32,7 +32,7 @@ public class LoanInfoDO {
 		loan.setRepaymentType(getRepaymentBankAccount());
 		loan.setTotalMonth(getTotalMonth());
 		loan.setWithdrawBankAccount(getWithdrawBankAccount());
-		return null;
+		return loan;
 	}
 	
 	public LoanInfoDO(LoanDomain domain) {

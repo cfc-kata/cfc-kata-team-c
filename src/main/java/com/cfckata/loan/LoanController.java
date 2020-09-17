@@ -27,14 +27,15 @@ public class LoanController {
 	@PostMapping
     @ResponseStatus(HttpStatus.OK)
     public LoanCreateResponse loanCreate(@RequestBody LoanRequest request) {
-		LoanDomain salesOrder = loanService.createLoan(request);
-        return new LoanCreateResponse(salesOrder);
+		LoanDomain loan = loanService.createLoan(request);
+        return new LoanCreateResponse(loan);
     }
     
     @GetMapping("/{id}")
     public LoanResponse getLoanInfo(@PathVariable String id) {
+		LoanDomain loan = loanService.getLoanInfo(id);
 
-        return new LoanResponse();
+        return new LoanResponse(loan);
     }
 
 }

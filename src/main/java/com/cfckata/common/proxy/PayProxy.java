@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 @Service
 public class PayProxy {
 
-    public void pay(String orderId, BigDecimal amount) {
+    public void pay(String loanId, BigDecimal amount) {
         //Call exteranl service
     }
 }
