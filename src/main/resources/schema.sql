@@ -6,5 +6,6 @@ create table if not exists repayment_order(
 	amount decimal(16, 2) not null default 0,
 	repayment_bank_account varchar(32),
 	repay_sts varchar(2),
+	version int(10),
 	primary key (repayment_id)
 );

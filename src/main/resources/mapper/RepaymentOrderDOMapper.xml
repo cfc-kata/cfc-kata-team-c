@@ -11,6 +11,7 @@
 				<result property="amount" column="amount" />
 				<result property="repaymentBankAccount" column="repayment_bank_account" />
 				<result property="repaySts" column="repay_sts" />
+				<result column="version" jdbcType="INTEGER" property="version" />
 	</resultMap>
 	
 	<sql id="table">
@@ -25,11 +26,12 @@
 	    amount=#{amount}, 
 	    repayment_bank_account=#{repaymentBankAccount}, 
 	    repay_sts=#{repaySts}
+	    version=#{version}
 	  </set>
 	</sql>
 	
 	<sql id="columns">
-		repayment_id,loan_id,create_time,repayment_plan_id,amount,repayment_bank_account,repay_sts
+		repayment_id,loan_id,create_time,repayment_plan_id,amount,repayment_bank_account,repay_sts,version
 	</sql>
 
    <!-- 单条插入记录  -->
@@ -37,7 +39,7 @@
 		INSERT INTO <include refid="table" />
 		(<include refid="columns"/>)
 		VALUES
-		(#{repaymentId}, #{loanId}, #{createTime}, #{repaymentPlanId}, #{amount}, #{repaymentBankAccount}, #{repaySts})
+		(#{repaymentId}, #{loanId}, #{createTime}, #{repaymentPlanId}, #{amount}, #{repaymentBankAccount}, #{repaySts}, #{version})
 	</insert>
 		
     <!-- 根据ID查询单笔记录  -->

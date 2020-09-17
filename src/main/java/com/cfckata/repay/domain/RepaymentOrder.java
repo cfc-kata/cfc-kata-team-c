@@ -13,12 +13,13 @@ import lombok.Data;
 @Data
 public class RepaymentOrder {
 
-	public String loanId;
-	public String repaymentId;
-	public Date createTime;
-	public String repaymentPlanId;
-	public BigDecimal amount;
-	public String repaymentBankAccount;
+	private String loanId;
+	private String repaymentId;
+	private Date createTime;
+	private String repaymentPlanId;
+	private BigDecimal amount;
+	private String repaymentBankAccount;
+	private int version;
 	
 	public RepaymentOrder() {
 		
