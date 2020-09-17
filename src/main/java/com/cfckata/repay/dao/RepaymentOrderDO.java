@@ -23,6 +23,7 @@ public class RepaymentOrderDO {
 	public String repaymentPlanId;
 	public BigDecimal amount;
 	public String repaymentBankAccount;
+	public String repaySts;
 	
 	public RepaymentOrder toRepaymentOrder(RepaymentOrderDO orderDO) {
 		RepaymentOrder repayOrder = new RepaymentOrder();

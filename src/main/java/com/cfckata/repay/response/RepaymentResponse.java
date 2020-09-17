@@ -30,11 +30,11 @@ public class RepaymentResponse implements Serializable{
 	
 	
 	public RepaymentResponse(RepaymentOrder repaymentOrder) {
-		RepaymentResponse resp = new RepaymentResponse();
-		resp.setRepaymentId(repaymentOrder.getRepaymentId());
-		resp.setCreateTime(repaymentOrder.getCreateTime());
-		resp.setLoanId(repaymentOrder.getLoanId());
-		resp.setAmount(repaymentOrder.getAmount());
-		resp.setRepaymentBankAccount(repaymentOrder.getRepaymentBankAccount());
+		this.repaymentId = repaymentOrder.getRepaymentId();
+		this.createTime = repaymentOrder.getCreateTime();
+		this.loanId = repaymentOrder.getLoanId();
+		this.repaymentPlanId = repaymentOrder.getRepaymentPlanId();
+		this.amount = repaymentOrder.getAmount();
+		this.repaymentBankAccount = repaymentOrder.getRepaymentBankAccount();
 	}
 }

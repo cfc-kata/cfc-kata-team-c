@@ -5,7 +5,7 @@ import org.springframework.stereotype.Repository;
 
 @Mapper
 @Repository
-public interface RepaymentOrderMapper {
+public interface RepaymentOrderDOMapper {
 
-	RepaymentOrderDO findById(String id);
+	RepaymentOrderDO findByRepaymentId(String repaymentId);
 }
