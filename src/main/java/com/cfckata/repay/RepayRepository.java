@@ -20,4 +20,10 @@ private RepaymentOrderDOMapper repaymentOrderMapper;
 		
 		return repaymentOrderDO.toRepaymentOrder(repaymentOrderDO);
 	}
+	
+	
+//	public Integer save(RepaymentOrder repaymentOrder) {
+//		return 1;
+//		//return repaymentOrderMapper.insert(new RepaymentOrderDO(repaymentOrder));
+//    }
 }

@@ -59,6 +59,13 @@ public class LoanRepository {
     	LoanRepaymentPlanDO planDO = loanRepaymentPlanDOMapper.selectByPrimaryKey(planId);
     	return planDO.toDomain();
     }
+    
+	public List<LoanRepaymentPlanDomain> getLoanRepaymentPlanDomainListByDt(String curDt) {
+		List<LoanRepaymentPlanDO> planDOs = loanRepaymentPlanDOMapper.selectByDt(curDt);
+		return planDOs.stream().map(planDO -> {
+			return planDO.toDomain();
+		}).collect(Collectors.toList());
+	}
 
     /**
      * 插入借据及还款计划

@@ -19,6 +19,7 @@ public class RepaymentOrder {
 	private String repaymentPlanId;
 	private BigDecimal amount;
 	private String repaymentBankAccount;
+	private String repaySts;
 	private int version;
 	
 	public RepaymentOrder() {

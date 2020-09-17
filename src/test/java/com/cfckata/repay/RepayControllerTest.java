@@ -3,7 +3,9 @@ package com.cfckata.repay;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
 
 import java.math.BigDecimal;
@@ -28,6 +30,12 @@ public class RepayControllerTest extends ApiTest {
 	
     @MockBean
     private LoanRepository loanRepository;
+    
+//    @MockBean
+//    RepayRepository repayRepository;
+    
+    @MockBean
+    RepayProxy repayProxy;
 
     @Override
     @BeforeEach
@@ -42,10 +50,13 @@ public class RepayControllerTest extends ApiTest {
         			return planDomain;
         		}
         });
+        
+        doNothing().when(repayProxy).repay(anyString(), any(), anyString());
+        //doNothing().when(repayRepository).save(any());
     }
 
-	
-    @Test
+
+	@Test
     public void createRepaymentOrderTest(){
         String url = baseUrl + "/repayments/repay/";
         ResponseEntity<RepaymentResponse> resp = this.restTemplate.postForEntity(url, getcreateRepaymentOrder(), RepaymentResponse.class);

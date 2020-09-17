@@ -11,7 +11,7 @@
 				<result property="amount" column="amount" />
 				<result property="repaymentBankAccount" column="repayment_bank_account" />
 				<result property="repaySts" column="repay_sts" />
-				<result column="version" jdbcType="INTEGER" property="version" />
+				<result property="version" column="version" />
 	</resultMap>
 	
 	<sql id="table">

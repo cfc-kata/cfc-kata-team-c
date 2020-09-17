@@ -23,4 +23,11 @@ public interface LoanRepaymentPlanDOMapper {
     List<LoanRepaymentPlanDO> selectByLoanNo(String loanNo);
 
     int insertBatch(List<LoanRepaymentPlanDO> list);
+    
+    /**
+     * 根据还款日期筛选应还的还款计划
+     * @param curDt
+     * @return
+     */
+    List<LoanRepaymentPlanDO> selectByDt(String curDt);
 }

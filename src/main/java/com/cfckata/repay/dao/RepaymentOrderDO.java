@@ -26,10 +26,24 @@ public class RepaymentOrderDO {
 	private String repaySts;
 	private Integer version;
 	
+	public RepaymentOrderDO() {
+		
+	}
+	
 	public RepaymentOrder toRepaymentOrder(RepaymentOrderDO orderDO) {
 		RepaymentOrder repayOrder = new RepaymentOrder();
 		BeanUtils.copyProperties(orderDO, repayOrder);
 		return repayOrder;
 	}
 	
+	public RepaymentOrderDO(RepaymentOrder repayOrder) {
+		this.loanId = repayOrder.getLoanId();
+		this.repaymentId = repayOrder.getRepaymentId();
+		this.createTime = repayOrder.getCreateTime();
+		this.repaymentPlanId = repayOrder.getRepaymentPlanId();
+		this.amount = repayOrder.getAmount();
+		this.repaymentBankAccount = repayOrder.getRepaymentBankAccount();
+		this.repaySts = repayOrder.getRepaySts();
+		this.version = repayOrder.getVersion();
+	}
 }

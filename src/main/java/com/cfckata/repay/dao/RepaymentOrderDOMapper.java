@@ -8,4 +8,7 @@ import org.springframework.stereotype.Repository;
 public interface RepaymentOrderDOMapper {
 
 	RepaymentOrderDO findByRepaymentId(String repaymentId);
+	
+	//int insert(RepaymentOrderDO record);
+	
 }
