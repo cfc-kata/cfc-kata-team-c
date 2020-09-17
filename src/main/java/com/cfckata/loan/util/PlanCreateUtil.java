@@ -26,7 +26,7 @@ public class PlanCreateUtil {
 		return list;
 	}
 
-	private static List<LoanRepaymentPlanDomain> createPlanByDEBJ(LoanDomain loanDomain) {
+	public static List<LoanRepaymentPlanDomain> createPlanByDEBJ(LoanDomain loanDomain) {
 		List<LoanRepaymentPlanDomain> list = new ArrayList();
 		for(int i=1;i<=loanDomain.getTotalMonth();i++) {
 			LoanRepaymentPlanDomain plan = new LoanRepaymentPlanDomain();
@@ -43,7 +43,7 @@ public class PlanCreateUtil {
 			// 剩余本金
 			plan.setRemainCapital(loanDomain.getApplyAmount().subtract(payableCapital.multiply(new BigDecimal(i-1))));
 			// 应还利息=剩余本金*年利率/12
-			BigDecimal mounthRate = loanDomain.getInterestRate().divide(new BigDecimal(12)).setScale(9, BigDecimal.ROUND_DOWN);
+			BigDecimal mounthRate = loanDomain.getInterestRate().divide(new BigDecimal(12),9,BigDecimal.ROUND_DOWN);
 			plan.setPayableInterest(plan.getRemainCapital().multiply(mounthRate).setScale(2, BigDecimal.ROUND_DOWN) );
 			// 应还总额
 			plan.setPayableAmount(plan.getPayableCapital().add(plan.getPayableInterest()));
