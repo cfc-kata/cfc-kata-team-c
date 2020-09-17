@@ -18,7 +18,7 @@ public class LoanControllerTest extends ApiTest {
     @Test
     public void loan_test() {
     	
-        LoanRequest request = new LoanRequest("合同号",new BigDecimal(3000),new BigDecimal(12),
+        LoanRequest request = new LoanRequest("合同号",new BigDecimal(3000),12,
         		new BigDecimal(9.9),"放款卡号","还款卡号","DEBX");
 
         //When

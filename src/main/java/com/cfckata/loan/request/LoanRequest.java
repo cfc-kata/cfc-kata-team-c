@@ -7,7 +7,7 @@ import java.util.List;
 public class LoanRequest {
     private String contractId;
     private BigDecimal applyAmount;
-    private BigDecimal totalMonth;
+    private Integer totalMonth;
     private BigDecimal interestRate;
     private String withdrawBankAccount;
     private String repaymentBankAccount;
@@ -17,7 +17,7 @@ public class LoanRequest {
     	
     }
     
-	public LoanRequest(String contractId, BigDecimal applyAmount, BigDecimal totalMonth, BigDecimal interestRate,
+	public LoanRequest(String contractId, BigDecimal applyAmount, Integer totalMonth, BigDecimal interestRate,
 			String withdrawBankAccount, String repaymentBankAccount, String repaymentType) {
 		this.contractId = contractId;
 		this.applyAmount = applyAmount;
@@ -44,11 +44,11 @@ public class LoanRequest {
 		this.applyAmount = applyAmount;
 	}
 
-	public BigDecimal getTotalMonth() {
+	public Integer getTotalMonth() {
 		return totalMonth;
 	}
 
-	public void setTotalMonth(BigDecimal totalMonth) {
+	public void setTotalMonth(Integer totalMonth) {
 		this.totalMonth = totalMonth;
 	}
 
