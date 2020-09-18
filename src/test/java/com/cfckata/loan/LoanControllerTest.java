@@ -7,6 +7,7 @@ import java.math.BigDecimal;
 import org.junit.Test;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.test.context.jdbc.Sql;
 
 import com.cfckata.common.ApiTest;
 import com.cfckata.loan.request.LoanRequest;
@@ -16,9 +17,11 @@ import com.cfckata.loan.response.LoanResponse;
 public class LoanControllerTest extends ApiTest {
 
     @Test
+    @Sql(scripts = "classpath:sql/contract-test-before.sql", executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
+    @Sql(scripts = "classpath:sql/contract-test-after.sql", executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     public void loan_test() {
     	
-        LoanRequest request = new LoanRequest("合同号",new BigDecimal(3000),12,
+        LoanRequest request = new LoanRequest("20200917000001",new BigDecimal(3000),12,
         		new BigDecimal(9.9),"放款卡号","还款卡号","DEBX");
 
         //When
