@@ -17,12 +17,12 @@ import com.cfckata.loan.response.LoanResponse;
 public class LoanControllerTest extends ApiTest {
 
     @Test
-    @Sql(scripts = "classpath:sql/contract-test-before.sql", executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
-    @Sql(scripts = "classpath:sql/contract-test-after.sql", executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
+    @Sql(scripts = "classpath:sql/contract-test-before_loan.sql", executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
+    @Sql(scripts = "classpath:sql/contract-test-after_loan.sql", executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     public void loan_test() {
     	
-        LoanRequest request = new LoanRequest("20200917000001",new BigDecimal(3000),12,
-        		new BigDecimal(9.9),"放款卡号","还款卡号","DEBX");
+        LoanRequest request = new LoanRequest("20200917000002",new BigDecimal(3000),12,
+        		new BigDecimal(0.154),"放款卡号","还款卡号","DEBJ");
 
         //When
         ResponseEntity<LoanCreateResponse> responseEntity = this.restTemplate.postForEntity(baseUrl + "/loan", request, LoanCreateResponse.class);
