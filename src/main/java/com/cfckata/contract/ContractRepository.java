@@ -45,7 +45,7 @@ public class ContractRepository {
 		contractDo.setInterestRate(contract.getInterestRate());
 		contractDo.setMaturityDate(contract.getMaturityDate());
 		contractDo.setRepaymentType(contract.getRepaymentType());
-		contractDo.setContractStatus(contract.getContractStatus());
+		contractDo.setStatus(contract.getContractStatus());
 		contractDo.setVersion(contract.getVersion());
 		return contractDo;
 	}    

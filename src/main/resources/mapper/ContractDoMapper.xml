@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.cfckata.loan.contract.dao.ContractDOMapper">
-  <resultMap id="BaseResultMap" type="com.cfckata.loan.contract.dao.ContractDO">
+<mapper namespace="com.cfckata.contract.dao.ContractDoMapper">
+  <resultMap id="BaseResultMap" type="com.cfckata.contract.dao.ContractDo">
     <id column="id" jdbcType="VARCHAR" property="id" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="customer_id" jdbcType="VARCHAR" property="customerId" />
     <result column="customer_name" jdbcType="VARCHAR" property="customerName" />
     <result column="customer_id_number" jdbcType="VARCHAR" property="customerIdNumber" />
-    <result column="customer_phone" jdbcType="VARCHAR" property="customerPhone" />
+    <result column="customer_mobile_phone" jdbcType="VARCHAR" property="customerMobilePhone" />
     <result column="interest_rate" jdbcType="DECIMAL" property="interestRate" />
     <result column="commitment" jdbcType="DECIMAL" property="commitment" />
     <result column="repayment_type" jdbcType="VARCHAR" property="repaymentType" />
@@ -16,7 +16,7 @@
     <result column="version" jdbcType="INTEGER" property="version" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, create_time, customer_id, customer_name, customer_id_number, customer_phone,
+    id, create_time, customer_id, customer_name, customer_id_number, customer_mobile_phone,
     interest_rate, commitment, repayment_type, maturity_date, status, version
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
@@ -29,23 +29,23 @@
     delete from contract
     where id = #{id,jdbcType=VARCHAR} and version = #{version,jdbcType=INTEGER}
   </delete>
-  <delete id="delete" parameterType="com.cfckata.loan.contract.dao.ContractDO">
+  <delete id="delete" parameterType="com.cfckata.contract.dao.ContractDo">
     delete from contract
     where id = #{id,jdbcType=VARCHAR} and version = #{version,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.cfckata.loan.contract.dao.ContractDO">
+  <insert id="insert" parameterType="com.cfckata.contract.dao.ContractDo">
     insert into contract (id, create_time, customer_id,
-      customer_name, customer_id_number, customer_phone,
+      customer_name, customer_id_number, customer_mobile_phone,
       interest_rate, commitment, repayment_type,
       maturity_date, status, version
       )
     values (#{id,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{customerId,jdbcType=VARCHAR},
-      #{customerName,jdbcType=VARCHAR}, #{customerIdNumber,jdbcType=VARCHAR}, #{customerPhone,jdbcType=VARCHAR},
+      #{customerName,jdbcType=VARCHAR}, #{customerIdNumber,jdbcType=VARCHAR}, #{customerMobilePhone,jdbcType=VARCHAR},
       #{interestRate,jdbcType=DECIMAL}, #{commitment,jdbcType=DECIMAL}, #{repaymentType,jdbcType=VARCHAR},
       #{maturityDate,jdbcType=TIMESTAMP}, #{status,jdbcType=VARCHAR}, 1
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.cfckata.loan.contract.dao.ContractDO">
+  <insert id="insertSelective" parameterType="com.cfckata.contract.dao.ContractDo">
     insert into contract
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -63,8 +63,8 @@
       <if test="customerIdNumber != null">
         customer_id_number,
       </if>
-      <if test="customerPhone != null">
-        customer_phone,
+      <if test="customerMobilePhone != null">
+        customer_mobile_phone,
       </if>
       <if test="interestRate != null">
         interest_rate,
@@ -99,8 +99,8 @@
       <if test="customerIdNumber != null">
         #{customerIdNumber,jdbcType=VARCHAR},
       </if>
-      <if test="customerPhone != null">
-        #{customerPhone,jdbcType=VARCHAR},
+      <if test="customerMobilePhone != null">
+        #{customerMobilePhone,jdbcType=VARCHAR},
       </if>
       <if test="interestRate != null">
         #{interestRate,jdbcType=DECIMAL},
@@ -120,7 +120,7 @@
       1
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.cfckata.loan.contract.dao.ContractDO">
+  <update id="updateByPrimaryKeySelective" parameterType="com.cfckata.contract.dao.ContractDo">
     update contract
     <set>
       <if test="createTime != null">
@@ -135,8 +135,8 @@
       <if test="customerIdNumber != null">
         customer_id_number = #{customerIdNumber,jdbcType=VARCHAR},
       </if>
-      <if test="customerPhone != null">
-        customer_phone = #{customerPhone,jdbcType=VARCHAR},
+      <if test="customerMobilePhone != null">
+        customer_mobile_phone = #{customerMobilePhone,jdbcType=VARCHAR},
       </if>
       <if test="interestRate != null">
         interest_rate = #{interestRate,jdbcType=DECIMAL},
@@ -159,13 +159,13 @@
     </set>
     where id = #{id,jdbcType=VARCHAR} and version = #{version,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.cfckata.loan.contract.dao.ContractDO">
+  <update id="updateByPrimaryKey" parameterType="com.cfckata.contract.dao.ContractDo">
     update contract
     set create_time = #{createTime,jdbcType=TIMESTAMP},
       customer_id = #{customerId,jdbcType=VARCHAR},
       customer_name = #{customerName,jdbcType=VARCHAR},
       customer_id_number = #{customerIdNumber,jdbcType=VARCHAR},
-      customer_phone = #{customerPhone,jdbcType=VARCHAR},
+      customer_mobile_phone = #{customerMobilePhone,jdbcType=VARCHAR},
       interest_rate = #{interestRate,jdbcType=DECIMAL},
       commitment = #{commitment,jdbcType=DECIMAL},
       repayment_type = #{repaymentType,jdbcType=VARCHAR},

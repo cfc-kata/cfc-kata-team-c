@@ -10,10 +10,9 @@ import org.junit.Test;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.jdbc.Sql;
-
 import java.math.BigDecimal;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 /**
@@ -23,7 +22,6 @@ import static org.junit.Assert.assertNotNull;
  * @copyright (c) 2020
  */
 public class ContractControllerTest extends ApiTest {
-
     @Test
     public void createContractTest(){
         String url = baseUrl + "/contract/create";
@@ -54,11 +52,11 @@ public class ContractControllerTest extends ApiTest {
     @Sql(scripts = "classpath:sql/contract-test-before.sql", executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     @Sql(scripts = "classpath:sql/contract-test-after.sql", executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     public void queryContractTest() {
-        String contractId = "11";
-        ResponseEntity<ContractQueryResp> responseEntity = this.restTemplate.getForEntity(baseUrl + "/contract/" + contractId, ContractQueryResp.class);
-        assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
+        String contractId = "20200917000001";
+        ResponseEntity<ContractQueryResp> responseEntity = this.restTemplate.getForEntity(baseUrl + "/contract/query/" + contractId, ContractQueryResp.class);
+        assertEquals(responseEntity.getStatusCode(), HttpStatus.OK);
         ContractQueryResp contract = responseEntity.getBody();
-        assertThat(contract.getContractId()).isEqualTo(contractId);
+        assertEquals(contractId, contract.getContractId());
     }
     
     

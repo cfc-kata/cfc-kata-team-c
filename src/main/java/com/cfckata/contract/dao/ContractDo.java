@@ -16,7 +16,7 @@ public class ContractDo {
 	private String customerName;
 	private String customerIdNumber;
 	private String customerMobilePhone;
-	private String contractStatus;
+	private String status;
 	private Integer version;
 
 	public Contract toContract() {
@@ -28,7 +28,7 @@ public class ContractDo {
 		Contract.setInterestRate(interestRate);
 		Contract.setMaturityDate(maturityDate);
 		Contract.setRepaymentType(repaymentType);
-		Contract.setContractStatus(contractStatus);
+		Contract.setContractStatus(status);
 		return Contract;
 	}
 
@@ -104,12 +104,12 @@ public class ContractDo {
 		this.createTime = createTime;
 	}
 
-	public String getContractStatus() {
-		return contractStatus;
+	public String getStatus() {
+		return status;
 	}
 
-	public void setContractStatus(String contractStatus) {
-		this.contractStatus = contractStatus;
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 	public Integer getVersion() {

@@ -4,12 +4,6 @@ import org.apache.commons.lang3.time.FastDateFormat;
 
 import java.util.Date;
 
-/**
- * @author shuwei.dou
- * @description
- * @date 2020/9/17 11:38
- * @copyright
- */
 public class DateUtil {
     /**无分隔符的8位日期格式*/
     public static final String PATTERN_NO_SEP_ON_DAY = "yyyyMMdd";

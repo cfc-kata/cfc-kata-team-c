@@ -6,6 +6,7 @@ import com.github.meixuesong.aggregatepersistence.Versionable;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Date;
 
@@ -27,8 +28,10 @@ public class Contract implements Serializable, Versionable {
 	private String maturityDate;
 	private BigDecimal commitment;
 	private String contractStatus;
+	private int version;
 
 	static {
+		commitmentLimitList = new ArrayList<>();
 		commitmentLimitList.add(new CommitmentLimit(0,17,BigDecimal.ZERO));
 		commitmentLimitList.add(new CommitmentLimit(18,20, new BigDecimal("10000.00")));
 		commitmentLimitList.add(new CommitmentLimit(21,30,new BigDecimal("50000.00")));
@@ -39,6 +42,7 @@ public class Contract implements Serializable, Versionable {
 	}
 
 	public Contract() {
+		this.version = 0;
 	}
 
 	public Contract(Customer customerInfo, BigDecimal interestRate, String repaymentType, String maturityDate, BigDecimal commitment) {
@@ -48,6 +52,7 @@ public class Contract implements Serializable, Versionable {
 		this.repaymentType = repaymentType;
 		this.maturityDate = maturityDate;
 		this.commitment = commitment;
+		this.version = 0;
 	}
 
 	public Contract(Customer customerInfo, BigDecimal interestRate, String repaymentType, String maturityDate, BigDecimal commitment, String contractStatus) {
@@ -58,6 +63,7 @@ public class Contract implements Serializable, Versionable {
 		this.maturityDate = maturityDate;
 		this.commitment = commitment;
 		this.contractStatus = contractStatus;
+		this.version = 0;
 	}
 
 	public void setContractStatus(String contractStatus) {
@@ -162,6 +168,6 @@ public class Contract implements Serializable, Versionable {
 
 	@Override
 	public int getVersion() {
-		return 0;
+		return version;
 	}
 }
