@@ -1,28 +1,38 @@
-package com.cfckata.contract.request;
+package com.cfckata.contract.response;
 
-import com.cfckata.contract.domain.Customer;
-import lombok.Data;
-
-import java.io.Serializable;
 import java.math.BigDecimal;
 
-/**
- * @author shuwei.dou
- * @description
- * @date 2020/9/11 11:04
- * @copyright (c) 2020
- */
-public class ContractReq implements Serializable {
-    private Customer customerInfo;
-    private BigDecimal interestRate;
-    private String repaymentType;
-    private String maturityDate;
-    private BigDecimal commitment;
-    private String contractId;
-    
-    public ContractReq() {
-    	
-    }
+import com.cfckata.contract.domain.Contract;
+import com.cfckata.contract.domain.Customer;
+
+public class ContractQueryResp {
+	private String contractId;
+	private Customer customerInfo;
+	private BigDecimal interestRate;
+	private String repaymentType;
+	private String maturityDate;
+	private BigDecimal commitment;
+
+	public ContractQueryResp() {
+		
+	}
+
+	public ContractQueryResp(Contract contract) {
+		contractId= contract.getContractId();
+		customerInfo = contract.getCustomerInfo();
+		interestRate=contract.getInterestRate();
+		repaymentType=contract.getRepaymentType();
+		maturityDate=contract.getMaturityDate();
+		commitment =contract.getCommitment();
+	}
+
+	public String getContractId() {
+		return contractId;
+	}
+
+	public void setContractId(String contractId) {
+		this.contractId = contractId;
+	}
 
 	public Customer getCustomerInfo() {
 		return customerInfo;
@@ -64,13 +74,4 @@ public class ContractReq implements Serializable {
 		this.commitment = commitment;
 	}
 
-	public String getContractId() {
-		return contractId;
-	}
-
-	public void setContractId(String contractId) {
-		this.contractId = contractId;
-	}
-    
-    
 }

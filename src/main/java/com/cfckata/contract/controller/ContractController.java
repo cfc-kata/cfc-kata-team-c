@@ -1,19 +1,12 @@
 package com.cfckata.contract.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
-
 import com.cfckata.contract.domain.Contract;
-import com.cfckata.contract.domain.ContractInfo;
-import com.cfckata.contract.request.ContractReq;
-import com.cfckata.contract.response.ContractInfoResp;
-import com.cfckata.contract.response.ContractResp;
+import com.cfckata.contract.request.ContractCreateReq;
+import com.cfckata.contract.response.ContractCreateResp;
+import com.cfckata.contract.response.ContractQueryResp;
 import com.cfckata.contract.service.ContractService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author shuwei.dou
@@ -28,16 +21,16 @@ public class ContractController {
     @Autowired
     private ContractService contractService;
 
-    @RequestMapping(value = "/create",method = RequestMethod.POST)
-    public ContractResp createContract(@RequestBody ContractReq contractReq){
-        String contractId = contractService.create(contractReq);
-        return  new ContractResp(contractId);
+    @PostMapping(value = "/create")
+    public ContractCreateResp createContract(@RequestBody ContractCreateReq contractCreateReq){
+        String contractId = contractService.create(contractCreateReq);
+        return  new ContractCreateResp(contractId);
     }
     
-    @GetMapping("/{contractId}")
-    public ContractInfoResp findContract(@PathVariable String contractId) {
-    	ContractInfo contractInfo =contractService.findById(contractId);
-    	return new ContractInfoResp(contractInfo);
+    @GetMapping("/query/{contractId}")
+    public ContractQueryResp findContract(@PathVariable String contractId) {
+    	Contract contractInfo =contractService.findById(contractId);
+    	return new ContractQueryResp(contractInfo);
     }
 
-	}
+}

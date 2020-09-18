@@ -10,13 +10,13 @@ import java.io.Serializable;
  * @date 2020/9/11 11:15
  * @copyright (c) 2020
  */
-public class ContractResp{
+public class ContractCreateResp {
     private String contractId;
     
-    public ContractResp() {
+    public ContractCreateResp() {
     }
 
-    public ContractResp(String contractId) {
+    public ContractCreateResp(String contractId) {
         this.contractId = contractId;
     }
 

@@ -1,56 +1,52 @@
 package com.cfckata.contract;
 
 import java.math.BigDecimal;
+import java.util.Date;
 
-import javax.persistence.EntityNotFoundException;
-
+import com.cfckata.contract.dao.ContractDoMapper;
 import org.springframework.stereotype.Repository;
 
-import com.cfckata.contract.dao.ContractDOMapper;
 import com.cfckata.contract.dao.ContractDo;
 import com.cfckata.contract.domain.Contract;
-import com.cfckata.contract.domain.ContractInfo;
 import com.cfckata.contract.domain.Customer;
 import com.cfckata.contract.enums.RepaymentTypeEnum;
-import com.cfckata.contract.request.ContractReq;
 import com.github.meixuesong.aggregatepersistence.Aggregate;
 import com.github.meixuesong.aggregatepersistence.AggregateFactory;
 
+import javax.persistence.OptimisticLockException;
+
 @Repository
 public class ContractRepository {
-	
-	private ContractDOMapper contractDOMapper;
-	
-	
-	public Aggregate<ContractInfo> findById(String id) {
-		// ContractDo contractDo = contractDOMapper.selectByPrimaryKey(id);
-		ContractDo contractDo = getContractCreateInfo();
-		/*
-		 * if (contractDo == null) { throw new EntityNotFoundException("contractDo(" +
-		 * id + ") not found"); }
-		 */
-		ContractInfo contractInfo = contractDo.toContract();
-		return AggregateFactory.createAggregate(contractInfo);
-	}
-	   
-	   private ContractDo getContractCreateInfo(){
-		   ContractDo contractDo = new ContractDo();
-	        Customer  customer = new Customer();
-	        customer.setId("1");
-	        customer.setIdNumber("410782199001011234");
-	        customer.setMobilePhone("18911112222");
-	        customer.setName("zhangsan");
-	        contractDo.setContractId("11");
-	        contractDo.setCustomerInfo(customer);
-	        contractDo.setInterestRate(new BigDecimal("9.9"));
-	        contractDo.setRepaymentType(RepaymentTypeEnum.DEBX.name());
-	        contractDo.setMaturityDate("2022-05-01");
-	        contractDo.setCommitment(new BigDecimal("9000.00"));
-	        return contractDo;
-	    }
+	private ContractDoMapper contractDoMapper;
 
-	public void save(Aggregate<ContractInfo> aggregate) {
-		
+	public ContractRepository(ContractDoMapper contractDoMapper) {
+		this.contractDoMapper = contractDoMapper;
 	}
 
+	public Aggregate<Contract> findById(String id) {
+		ContractDo contractDo = contractDoMapper.selectByPrimaryKey(id);
+		Contract contract = contractDo.toContract();
+		return AggregateFactory.createAggregate(contract);
+	}
+
+	public void save(Aggregate<Contract> aggregate) {
+		contractDoMapper.insert(contractToDo(aggregate.getRoot()));
+	}
+
+	private ContractDo contractToDo(Contract contract) {
+		ContractDo contractDo = new ContractDo();
+		contractDo.setId(contract.getContractId());
+		contractDo.setCreateTime(new Date());
+		contractDo.setCommitment(contract.getCommitment());
+		contractDo.setCustomerId(contract.getCustomerInfo().getId());
+		contractDo.setCustomerName(contract.getCustomerInfo().getName());
+		contractDo.setCustomerIdNumber(contract.getCustomerInfo().getIdNumber());
+		contractDo.setCustomerMobilePhone(contract.getCustomerInfo().getMobilePhone());
+		contractDo.setInterestRate(contract.getInterestRate());
+		contractDo.setMaturityDate(contract.getMaturityDate());
+		contractDo.setRepaymentType(contract.getRepaymentType());
+		contractDo.setContractStatus(contract.getContractStatus());
+		contractDo.setVersion(contract.getVersion());
+		return contractDo;
+	}    
 }
