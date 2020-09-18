@@ -1,19 +1,14 @@
 package com.cfckata.contract;
 
-import java.math.BigDecimal;
 import java.util.Date;
 
-import com.cfckata.contract.dao.ContractDoMapper;
 import org.springframework.stereotype.Repository;
 
 import com.cfckata.contract.dao.ContractDo;
+import com.cfckata.contract.dao.ContractDoMapper;
 import com.cfckata.contract.domain.Contract;
-import com.cfckata.contract.domain.Customer;
-import com.cfckata.contract.enums.RepaymentTypeEnum;
 import com.github.meixuesong.aggregatepersistence.Aggregate;
 import com.github.meixuesong.aggregatepersistence.AggregateFactory;
-
-import javax.persistence.OptimisticLockException;
 
 @Repository
 public class ContractRepository {

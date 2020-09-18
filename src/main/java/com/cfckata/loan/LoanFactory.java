@@ -17,9 +17,10 @@ public class LoanFactory {
 	}
 
 	public Aggregate<LoanDomain> createLoan(LoanRequest request) {
-        if (contractRepository.findById(request.getContractId()) == null) {
-            throw new IllegalArgumentException("Custract not exists.");
-        }
+		// todo持久层待完善
+//        if (contractRepository.findById(request.getContractId()) == null) {
+//            throw new IllegalArgumentException("Custract not exists.");
+//        }
 
         LoanDomain loan = new LoanDomain();
         loan.setApplyAmount(request.getApplyAmount());
